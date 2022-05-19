@@ -31,18 +31,13 @@ function App() {
   }
 
   function selectShow(show) {
-    Adapter.getShowEpisodes(show.id).then((episodes) => {
+    Adapter.getShowEpisodes(show.id).then((allEpisodes) => {
       setSelectedShow(show);
-      setEpisodes(episodes);
+      setEpisodes(allEpisodes);
     });
   }
-
-  let displayShows = shows;
-  if (filterByRating) {
-    displayShows = displayShows.filter((s) => {
-      s.rating.average >= filterByRating;
-    });
-  }
+  
+  const displayShows = shows.filter((s) => s.rating.average >= filterByRating)
 
   return (
     <div>
